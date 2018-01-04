@@ -57,6 +57,7 @@ public class Sys_UserAction extends ActionSupport implements ModelDriven<Sys_Use
 	
 	
 	public String register(){
+		//应为insert  sys_User
 		Sys_User sys_User = sys_UserService.selectByName(this.sys_user.getUser_code());
 		if (sys_User != null) {
 			return "login";
