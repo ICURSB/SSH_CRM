@@ -58,8 +58,10 @@ public class Sys_UserAction extends ActionSupport implements ModelDriven<Sys_Use
 	
 	public String register(){
 		Sys_User sys_User = sys_UserService.selectByName(this.sys_user.getUser_code());
-		
-		return null;
+		if (sys_User != null) {
+			return "login";
+		}
+		return "register";
 	}
 	public String checkCode(){
 		Sys_User sys_User = sys_UserService.selectByName(this.sys_user.getUser_code());
