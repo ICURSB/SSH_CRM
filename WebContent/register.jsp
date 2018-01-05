@@ -143,7 +143,10 @@ border=0></TD></TR></TBODY></TABLE></DIV></DIV>
 
 
 </FORM></BODY></HTML>
-
+	<%
+		session.removeAttribute("userMsg");
+		session.removeAttribute("codeMsg");
+	%>
 
 </body>
 </html>

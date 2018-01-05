@@ -20,14 +20,14 @@
 		document.customerForm.submit();
 	}
 	/*页面加载  */
-	$(function(){
+	/* $(function(){
 		//利用ajax发请求 客户级别
 		var url = "${pageContext.request.contextPath}/dict_findByCode.action";
 		var param = {"dict_type_code":"006"};
 		$.post(url,param,function(data){
 			//i 索引 n对象
 			$(data).each(function(i,n){
-			/* 	alert(i+" : "+n.dict_item_name);  */
+			// 	alert(i+" : "+n.dict_item_name);  
 				//jq的DOM操作
 				//先获取值栈中的值
 				var vsId = "${model.level.dict_id}";
@@ -43,7 +43,7 @@
 		$.post(url,param,function(data){
 			//i 索引 n对象
 			$(data).each(function(i,n){
-				/* alert(i+" : "+n.dict_item_name); */
+				// alert(i+" : "+n.dict_item_name); 
 				//jq的DOM操作
 				//获取值栈中的值
 				var vsId = "${model.source.dict_id}";
@@ -54,7 +54,7 @@
 				}
 			});
 		},"json");
-	});
+	}); */
 </SCRIPT>
 
 <META content="MSHTML 6.00.2900.3492" name=GENERATOR>
@@ -154,7 +154,7 @@
 														<TD>${customer.level.dict_item_name }</TD>
 														<TD>${customer.source.dict_item_name }</TD>
 
-														<TD>${customer.cust_linkman }</TD>
+														<TD><%-- ${customer.cust_linkman } --%></TD>
 														<TD>${customer.cust_phone }</TD>
 														<TD>${customer.cust_mobile }</TD>
 														<TD><a
@@ -193,7 +193,7 @@
 												到 
 												<input type="text" size="3" id="page" name="pageCode" /> 
 												页
-												 <input type="button" value="Go" onclick="to_page()" />
+												 <input type="button" value="Go" onclick="to_page(${page.pageCode})" />
 											</DIV>
 									</SPAN></TD>
 								</TR>

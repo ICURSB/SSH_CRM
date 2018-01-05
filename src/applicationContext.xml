@@ -50,6 +50,8 @@
 		<property name="mappingResources">
 			<list>
 				<value>com/hi/bean/Sys_User.hbm.xml</value>
+				<value>com/hi/bean/Base_Dict.hbm.xml</value>
+				<value>com/hi/bean/Customer.hbm.xml</value>
 			</list>
 		</property>
 	</bean>	
@@ -61,6 +63,8 @@
 	<!-- 开启事务注解扫描 -->
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	
+	
+	<!-- 登录模块配置 -->
 	<bean name="sys_UserAction" class="com.hi.action.Sys_UserAction" scope="prototype">
 		<property name="sys_UserService" ref="sys_UserService"/>
 	</bean>
@@ -68,6 +72,18 @@
 		<property name="sys_UserDao" ref="sys_UserDao" />
 	</bean>
 	<bean name="sys_UserDao" class="com.hi.dao.Sys_UserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	
+	<!-- 客户模块配置 -->
+	<bean name="customerAction" class="com.hi.action.CustomerAction" >
+		<property name="customerService" ref="customerService"/>
+	</bean>
+	<bean name="customerService" class="com.hi.service.CustomerServiceImpl">
+		<property name="customerDao" ref="customerDao" />
+	</bean>
+	<bean name="customerDao" class="com.hi.dao.CustomerDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
 	

@@ -1,6 +1,8 @@
 package com.hi.bean;
 
-public class Sys_User {
+import java.io.Serializable;
+
+public class Sys_User implements Serializable {
 /**
 CREATE TABLE `sys_user` (
   `user_id` bigint(32) NOT NULL AUTO_INCREMENT COMMENT '用户id',

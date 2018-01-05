@@ -1,5 +1,6 @@
 package com.hi.dao;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
@@ -29,6 +30,31 @@ public class Sys_UserDaoImpl extends HibernateDaoSupport implements Sys_UserDao{
 		}
 	
 		return null;
+	}
+
+	@Override
+	public int insert(Sys_User sys_user) {
+		Serializable id = this.getHibernateTemplate().save(sys_user);
+		try {
+			if((long)id > 0 ){
+				return 1;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return -1;
+	}
+
+	@Override
+	public boolean update(Sys_User sys_user) {
+		try {
+			this.getHibernateTemplate().update(sys_user);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 	
 }

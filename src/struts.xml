@@ -6,9 +6,21 @@
 		<package name="struts" extends="struts-default" namespace="/">
 			<!-- 验证码 -->
 			<action name="vCode" class="com.hi.action.VCode"/>
-			<action name="user_*" class="sys_UserAction" method="{1}">
+			<action name="user_*" class="com.hi.action.Sys_UserAction" method="{1}">
 				<result name="index">index.jsp</result>
 				<result name="login">login.jsp</result>
+				<result name="register">register.jsp</result>
+				<result name="updatePassword">updatePassword.jsp</result>
+				
+				<result name="customerList">/jsp/customer/list.jsp</result>
+				
+				<result name="error">/jsp/error.jsp</result>
+				<result name="regSuccess">/jsp/success.jsp</result>
+				<result name="pswSuccess">/jsp/success.jsp</result>
+			</action>
+			<action name="customer_*" class="com.hi.action.CustomerAction" method="{1}">
+				
+				<result name="customerList">/jsp/customer/list.jsp</result>
 			</action>
 		</package>
 	

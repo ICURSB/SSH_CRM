@@ -6,7 +6,15 @@
 <TITLE>客户关系管理系统</TITLE> 
 <META http-equiv=Content-Type content="text/html; charset=utf-8">
 <META content="MSHTML 6.00.2900.3492" name=GENERATOR>
-
+	<script type="text/javascript">
+		window.onload = function(){
+			if("${existUser.user_name }" == "" ){
+				alert("登录超时，请重新登录！");
+				location.href = "${pageContext.request.contextPath}/login.jsp";
+			}
+		};
+		
+	</script>
 
 </HEAD>
 <FRAMESET frameSpacing=0 rows=80,* frameBorder=0>

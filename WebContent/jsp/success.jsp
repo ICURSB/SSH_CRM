@@ -39,6 +39,8 @@
 								src="${pageContext.request.contextPath }/images/yes.png"
 								align="middle" height="30" width="30" />
 							    <span style="vertical-align: middle">您的操作成功！</span>	
+							    <br>
+							    ${successMsg }
 							</td>
 						</tr>
 					</table>
@@ -60,5 +62,8 @@
 				</TR>
 			</TBODY>
 		</TABLE>
+		<%
+			session.removeAttribute("successMsg");
+		%>
 </BODY>
 </HTML>

@@ -19,7 +19,14 @@ TD {
 <META content="MSHTML 6.00.6000.16809" name=GENERATOR>
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-3.1.0.min.js"></script>
 <script type="text/javascript">
-		
+
+	window.onload = function(){
+		if("${existUser.user_name }" == "" ){
+			alert("登录超时，请重新登录！");
+			location.href = "${pageContext.request.contextPath}/login.jsp";
+		}
+	};
+
 	function checkPassword(){
 		//获取登入名
 		var oldUser_code = $("#user_code").val();
@@ -84,7 +91,7 @@ style="LEFT: 0px; POSITION: absolute; TOP: 0px; BACKGROUND-COLOR: #0066ff"></DIV
               <TR>
                 <TD style="HEIGHT: 28px" width=80></TD>
                 <TD style="HEIGHT: 28px" width=150>
-                <INPUT id="user_code" type="hidden" style="WIDTH: 130px" name="user_code" value="${model.user_code }"></TD>
+                <INPUT id="user_code" type="hidden" style="WIDTH: 130px" name="user_code" value="${existUser.user_code }"></TD>
                 <TD style="HEIGHT: 28px" width=370>
                 <SPAN id="codeId" style="FONT-WEIGHT: bold;"></SPAN></TD></TR>
               <TR>
