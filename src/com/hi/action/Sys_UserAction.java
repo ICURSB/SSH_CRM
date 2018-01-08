@@ -3,7 +3,6 @@ package com.hi.action;
 import java.io.IOException;
 
 import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;

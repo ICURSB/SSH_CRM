@@ -4,7 +4,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.hi.bean.Sys_User;
 import com.hi.dao.Sys_UserDao;
-import com.hi.util.MD5_BASE64;
+import com.hi.util.Utils;
 
 @Transactional
 public class Sys_UserServiceImpl implements Sys_UserService{
@@ -17,14 +17,13 @@ public class Sys_UserServiceImpl implements Sys_UserService{
 
 	@Override
 	public Sys_User select(Sys_User sys_user) {
-		sys_user.setUser_password(MD5_BASE64.md5(sys_user.getUser_password()));
+		sys_user.setUser_password(Utils.md5(sys_user.getUser_password()));
 		return sys_UserDao.select(sys_user);
 	}
 
 
 	@Override
 	public Sys_User selectByName(String user_code) {
-		// TODO Auto-generated method stub
 		return sys_UserDao.selectByName(user_code);
 	}
 
@@ -35,7 +34,7 @@ public class Sys_UserServiceImpl implements Sys_UserService{
 			return 0;
 		}
 		System.out.println(sys_user);
-		sys_user.setUser_password(MD5_BASE64.md5(sys_user.getUser_password()));
+		sys_user.setUser_password(Utils.md5(sys_user.getUser_password()));
 		sys_user.setUser_state("1");
 		return sys_UserDao.insert(sys_user);
 	}
@@ -57,7 +56,7 @@ public class Sys_UserServiceImpl implements Sys_UserService{
 
 	@Override
 	public boolean update(Sys_User sys_user) {
-		sys_user.setUser_password(MD5_BASE64.md5(sys_user.getUser_password()));
+		sys_user.setUser_password(Utils.md5(sys_user.getUser_password()));
 		
 		return sys_UserDao.update(sys_user);
 	}
@@ -67,7 +66,7 @@ public class Sys_UserServiceImpl implements Sys_UserService{
 	public boolean checkPassword(Sys_User inUser, Sys_User existUser) {
 		if(existUser == null || inUser == null) return false;
 		return existUser.getUser_code().equals(inUser.getUser_code()) &&
-			MD5_BASE64.md5(inUser.getUser_password()).equals(existUser.getUser_password());
+				Utils.md5(inUser.getUser_password()).equals(existUser.getUser_password());
 	}
 
 }

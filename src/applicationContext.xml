@@ -52,6 +52,8 @@
 				<value>com/hi/bean/Sys_User.hbm.xml</value>
 				<value>com/hi/bean/Base_Dict.hbm.xml</value>
 				<value>com/hi/bean/Customer.hbm.xml</value>
+				<value>com/hi/bean/Visit.hbm.xml</value>
+				<value>com/hi/bean/LinkMan.hbm.xml</value>
 			</list>
 		</property>
 	</bean>	
@@ -77,13 +79,35 @@
 	
 	
 	<!-- 客户模块配置 -->
-	<bean name="customerAction" class="com.hi.action.CustomerAction" >
+	<bean name="customerAction" class="com.hi.action.CustomerAction" scope="prototype">
 		<property name="customerService" ref="customerService"/>
 	</bean>
 	<bean name="customerService" class="com.hi.service.CustomerServiceImpl">
 		<property name="customerDao" ref="customerDao" />
 	</bean>
 	<bean name="customerDao" class="com.hi.dao.CustomerDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<!-- 客户字典模块 -->
+	<bean name="base_DictAction" class="com.hi.action.Base_DictAction" scope="prototype">
+		<property name="base_DictService" ref="base_DictService"/>
+	</bean>
+	<bean name="base_DictService" class="com.hi.service.Base_DictServiceImpl">
+		<property name="base_DictDao" ref="base_DictDao"/>
+	</bean>
+	<bean name="base_DictDao" class="com.hi.dao.Base_DictDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>	
+	
+	<!-- 客户联系人模块 -->
+	<bean name="linkManAction" class="com.hi.action.LinkManAction" scope="prototype">
+		<property name="linkManService" ref="linkManService"/>
+	</bean>
+	<bean name="linkManService" class="com.hi.service.LinkManServiceImpl">
+		<property name="linkManDao" ref="linkManDao"/>
+	</bean>
+	<bean name="linkManDao" class="com.hi.dao.LinkManDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
 	

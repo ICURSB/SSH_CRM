@@ -1,5 +1,10 @@
 package com.hi.bean;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import com.alibaba.fastjson.annotation.JSONField;
+
 public class Customer {
 	/**
 	 * 
@@ -19,6 +24,7 @@ CREATE TABLE `cst_customer` (
   KEY `FKeh5g36duab8g1h051pdjfwcgd` (`cust_source`),
   KEY `FK2xhr3arwp3tkuae1da4lqv352` (`cust_industry`),
   KEY `FKrty52nvbjg1echf0se39eng49` (`cust_level`),
+	  `cust_linkman` varchar(64) DEFAULT NULL COMMENT '联系人',
   CONSTRAINT `FK2xhr3arwp3tkuae1da4lqv352` FOREIGN KEY (`cust_industry`) REFERENCES `base_dict` (`dict_id`),
   CONSTRAINT `FKeh5g36duab8g1h051pdjfwcgd` FOREIGN KEY (`cust_source`) REFERENCES `base_dict` (`dict_id`),
   CONSTRAINT `FKrty52nvbjg1echf0se39eng49` FOREIGN KEY (`cust_level`) REFERENCES `base_dict` (`dict_id`),
@@ -32,7 +38,6 @@ CREATE TABLE `cst_customer` (
 	  `cust_industry` varchar(32) DEFAULT NULL COMMENT '客户所属行业',
 	  `cust_level` varchar(32) DEFAULT NULL COMMENT '客户级别',
 	  
-	  `cust_linkman` varchar(64) DEFAULT NULL COMMENT '联系人',
 	  */
 	private Long cust_id;
 	private String cust_name;
@@ -41,11 +46,45 @@ CREATE TABLE `cst_customer` (
 	private String cust_phone;
 	private String cust_mobile;
 	private String filePath;
+	private String cust_linkman;
+	/**
+	 *  拜访记录
+	 * @return
+	 */
+	@JSONField(serialize=false)
+	private Set<Visit> visits = new HashSet<Visit>();
 	
+	/**
+	 *  联系人
+	 * @return
+	 */
+	@JSONField(serialize=false)
+	private Set<LinkMan> linkMans = new HashSet<LinkMan>();
+	
+	
+	
+	
+	public Set<LinkMan> getLinkMans() {
+		return linkMans;
+	}
+	public void setLinkMans(Set<LinkMan> linkMans) {
+		this.linkMans = linkMans;
+	}
+	public Set<Visit> getVisits() {
+		return visits;
+	}
+	public void setVisits(Set<Visit> visits) {
+		this.visits = visits;
+	}
+	public String getCust_linkman() {
+		return cust_linkman;
+	}
+	public void setCust_linkman(String cust_linkman) {
+		this.cust_linkman = cust_linkman;
+	}
 	private Base_Dict source; 
 	private Base_Dict industry;
 	private Base_Dict level;
-	
 	public Long getCust_id() {
 		return cust_id;
 	}
@@ -110,6 +149,8 @@ CREATE TABLE `cst_customer` (
 	public String toString() {
 		return "Customer [cust_id=" + cust_id + ", cust_name=" + cust_name + ", cust_user_id=" + cust_user_id
 				+ ", cust_create_id=" + cust_create_id + ", cust_phone=" + cust_phone + ", cust_mobile=" + cust_mobile
-				+ ", filePath=" + filePath + ", source=" + source + ", industry=" + industry + ", level=" + level + "]";
+				+ ", filePath=" + filePath + ", cust_linkman=" + cust_linkman + ", visitsSize=" + visits.size() + ", linkMansSize="
+				+ linkMans.size() + ", source=" + source + ", industry=" + industry + ", level=" + level + "]";
 	}
+	
 }

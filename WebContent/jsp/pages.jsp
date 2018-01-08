@@ -15,6 +15,6 @@
 												[<A href="javascript:to_page(${page.pageCode + 1})">后一页</A>] 
 												</c:if>
 		到 <input type="text" size="3" id="page" name="pageCode" /> 页 <input
-			type="button" value="Go" onclick="to_page()" />
+			type="button" value="Go" onclick="to_page(${page.pageCode})" />
 	</DIV>
 </SPAN>

@@ -37,7 +37,7 @@ $(function(){
 </HEAD>
 <BODY>
 	<FORM id=form1 name=form1
-		action="${pageContext.request.contextPath }/customer_save.action" method="post" enctype="multipart/form-data">
+		action="${pageContext.request.contextPath }/customer_update.action" method="post" enctype="multipart/form-data">
 		
 		<TABLE cellSpacing=0 cellPadding=0 width="98%" border=0>
 			<TBODY>
@@ -136,6 +136,8 @@ $(function(){
 								<td rowspan=2>
 								<INPUT class=button id=sButton2 type=submit
 														value=" 保存 " name=sButton2>
+														
+								<span style="color:red; ">${msg }</span>
 								</td>
 							</tr>
 						</TABLE>
@@ -160,5 +162,9 @@ $(function(){
 			</TBODY>
 		</TABLE>
 	</FORM>
+	
+	<%
+		session.removeAttribute("msg");
+	%>
 </BODY>
 </HTML>

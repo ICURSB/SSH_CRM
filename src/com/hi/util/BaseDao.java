@@ -6,17 +6,20 @@ import org.hibernate.criterion.DetachedCriteria;
 
 public interface BaseDao<T> {
 	
-	public void save(T t);
+	public boolean save(T t);
 	
-	public void delete(T t);
+	public boolean delete(T t);
 	
-	public void update(T t);
+	public boolean update(T t);
 	
 	public T findById(Long id);
 	
+	public List<T> selectAll();
+	
 	public T selectOne(T t);
 	
-	public List<T> selectAll(DetachedCriteria criteria, Integer pageCode, Integer pageSize);
 	
 	public PageBean<T> findByPage(DetachedCriteria criteria,Integer pageCode,Integer pageSize);
+	
+	
 }

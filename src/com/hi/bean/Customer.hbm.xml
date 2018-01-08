@@ -2,6 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC 
     "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    
     <hibernate-mapping>
     	<class name="com.hi.bean.Customer" table="cst_customer">
     		<id name="cust_id" column="cust_id">
@@ -14,10 +15,23 @@
     		<property name="cust_phone" column="cust_phone"/>
     		<property name="cust_mobile" column="cust_mobile"/>
     		<property name="filePath" column="filePath"/>
+    		<property name="cust_linkman" column="cust_linkman"/>
     		
     		<many-to-one name="source" class="com.hi.bean.Base_Dict" column="cust_source"/>
     		<many-to-one name="industry" class="com.hi.bean.Base_Dict" column="cust_industry"/>
     		<many-to-one name="level" class="com.hi.bean.Base_Dict" column="cust_level"/>
+    		
+    		<!-- 拜访 -->
+    		<set name="visits" cascade="delete">
+    			<key column="visit_cust_id"/>
+    			<one-to-many class="com.hi.bean.Visit"/>
+    		</set>
+    		
+    		<!-- 联系人 -->
+    		<set name="linkMans" cascade="delete">
+    			<key column="lkm_cust_id"/>
+    			<one-to-many class="com.hi.bean.LinkMan"/>
+    		</set>
+    		
     	</class>
-    
     </hibernate-mapping>

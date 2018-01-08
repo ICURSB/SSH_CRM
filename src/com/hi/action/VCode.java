@@ -148,16 +148,16 @@ public class VCode implements Action{
 			// red = 0;
 			// green = 255;
 			// blue = 255;
-
-			// 截取汉字
-			String ch = base.charAt(new Random().nextInt(base.length())) + "";
-
 			// 用随机产生的颜色将验证码绘制到图像中。
 			gd.setColor(new Color(red, green, blue));
+
+			// 截取汉字
+/*			String ch = base.charAt(new Random().nextInt(base.length())) + "";
+
 			boolean z = new Random().nextBoolean();
 			if (z) {
-//				strRand = ch;
-			}
+				strRand = ch;
+			}*/
 
 			// 将产生的四个随机数组合在一起。
 			gd.drawString(strRand, (i + 1) * xx - 10, codeY);

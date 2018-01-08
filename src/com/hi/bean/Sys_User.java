@@ -3,6 +3,7 @@ package com.hi.bean;
 import java.io.Serializable;
 
 public class Sys_User implements Serializable {
+	private static final long serialVersionUID = 1L;
 /**
 CREATE TABLE `sys_user` (
   `user_id` bigint(32) NOT NULL AUTO_INCREMENT COMMENT '用户id',

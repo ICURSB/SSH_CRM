@@ -32,23 +32,40 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T> {
 	/**
 	 *  保存
 	 */
-	public void save(T t) {
-		
-		this.getHibernateTemplate().save(t);
+	public boolean save(T t) {
+		try {
+			this.getHibernateTemplate().save(t);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 
 	/**
 	 *  删除
 	 */
-	public void delete(T t) {
-		this.getHibernateTemplate().delete(t);
+	public boolean delete(T t) {
+		try {
+			this.getHibernateTemplate().delete(t);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 
 	/**
 	 *  修改
 	 */
-	public void update(T t) {
-		this.getHibernateTemplate().update(t);
+	public boolean update(T t) {
+		try {
+			this.getHibernateTemplate().update(t);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 
 	/**
@@ -113,16 +130,6 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T> {
 			System.out.println(pageBean.toString());
 			return pageBean;
 	}
-	@Override
-	public List<T> selectAll(DetachedCriteria criteria, Integer pageCode, Integer pageSize) {
-		
-		
-		return null;
-	}
-	
-	
-	
-	
 	
 	
 }

@@ -14,20 +14,21 @@
 	src="${pageContext.request.contextPath }/js/jquery-3.1.0.min.js"></script>
 <SCRIPT language=javascript>
 	function to_page(page) {
-		if (page) {
+		//参数不为null且输入框不存在值时给输入框赋值，否则以输入框内的值为准
+		if (page && $("#page").val()=="") {
 			$("#page").val(page);
 		}
 		document.customerForm.submit();
 	}
 	/*页面加载  */
-	/* $(function(){
+	 $(function(){
 		//利用ajax发请求 客户级别
 		var url = "${pageContext.request.contextPath}/dict_findByCode.action";
-		var param = {"dict_type_code":"006"};
+		var param = {"dict_type_code":"002"};
 		$.post(url,param,function(data){
 			//i 索引 n对象
 			$(data).each(function(i,n){
-			// 	alert(i+" : "+n.dict_item_name);  
+			// 	alert(i+" : "+n.dict_item_name);   	
 				//jq的DOM操作
 				//先获取值栈中的值
 				var vsId = "${model.level.dict_id}";
@@ -39,7 +40,7 @@
 			});
 		},"json");
 		//客户来源
-		var param = {"dict_type_code":"002"};
+		var param = {"dict_type_code":"006"};
 		$.post(url,param,function(data){
 			//i 索引 n对象
 			$(data).each(function(i,n){
@@ -54,12 +55,14 @@
 				}
 			});
 		},"json");
-	}); */
+	}); 
 </SCRIPT>
 
 <META content="MSHTML 6.00.2900.3492" name=GENERATOR>
 </HEAD>
 <BODY>
+
+<%@ include file="/backToLogin.jsp" %><!-- 登录用户不存在时自动跳转回登录界面 -->
 	<FORM id="customerForm" name="customerForm"
 		action="${pageContext.request.contextPath }/customer_findByPage.action"
 		method=post>
@@ -154,7 +157,7 @@
 														<TD>${customer.level.dict_item_name }</TD>
 														<TD>${customer.source.dict_item_name }</TD>
 
-														<TD><%-- ${customer.cust_linkman } --%></TD>
+														<TD>${customer.cust_linkman }</TD>
 														<TD>${customer.cust_phone }</TD>
 														<TD>${customer.cust_mobile }</TD>
 														<TD><a
@@ -186,14 +189,14 @@
 												<c:if test="${page.pageCode > 1 }">
 												[<A href="javascript:to_page(${page.pageCode-1})">前一页</A>] 
 												</c:if>
-												<B>${page.pageCode}</B>
+												<B>${page.pageCode }</B>
 												<c:if test="${page.pageCode < page.totalPage }">
 												[<A href="javascript:to_page(${page.pageCode+1})">后一页</A>] 
 												</c:if>
 												到 
 												<input type="text" size="3" id="page" name="pageCode" /> 
 												页
-												 <input type="button" value="Go" onclick="to_page(${page.pageCode})" />
+												 <input type="button" value="Go" onclick="to_page(${page.pageCode })" />
 											</DIV>
 									</SPAN></TD>
 								</TR>

@@ -11,8 +11,9 @@
 	rel=stylesheet>
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-3.1.0.min.js"></script>
 <SCRIPT language=javascript>
-	function to_page(page){
-		if(page){
+	function to_page(page) {
+		//参数不为null且输入框不存在值时给输入框赋值，否则以输入框内的值为准
+		if (page && $("#page").val()=="") {
 			$("#page").val(page);
 		}
 		document.customerForm.submit();
@@ -115,7 +116,7 @@
 													<TD>${linkman.lkm_mobile }</TD>
 													
 													<TD>
-													<a href="${pageContext.request.contextPath }/linkman_initUpdate?lkm_id=${linkman.lkm_id}">修改</a>
+													<a href="${pageContext.request.contextPath }/linkman_initUpdate?lkm_id=${linkman.lkm_id}&pageCode=${page.pageCode }&pageSize=${page.pageSize }">修改</a>
 													&nbsp;&nbsp;
 													<a href="${pageContext.request.contextPath }/linkman_delete?lkm_id=${linkman.lkm_id}" onclick="return window.confirm('确认删除吗?')">删除</a>
 													</TD>

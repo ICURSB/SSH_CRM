@@ -2,8 +2,6 @@ package com.hi.dao;
 
 import java.util.List;
 
-import org.hibernate.criterion.DetachedCriteria;
-
 import com.hi.bean.Customer;
 import com.hi.util.BaseDao;
 /**
@@ -12,5 +10,6 @@ import com.hi.util.BaseDao;
  *
  */
 public interface CustomerDao extends BaseDao<Customer>{
+
 	
 }

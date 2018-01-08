@@ -21,7 +21,41 @@
 			<action name="customer_*" class="com.hi.action.CustomerAction" method="{1}">
 				
 				<result name="customerList">/jsp/customer/list.jsp</result>
+				<result name="initAddUI">/jsp/customer/add.jsp</result>
+				<result name="initUpdate">/jsp/customer/edit.jsp</result>
+				<result name="deleteOK">/jsp/success.jsp</result>
 			</action>
+			<action name="dict_*" class="com.hi.action.Base_DictAction" method="{1}">
+				
+				<result name="customerList">/jsp/customer/list.jsp</result>
+			</action>
+			<action name="linkman_*" class="com.hi.action.LinkManAction" method="{1}">
+				
+				<result name="linkmanList">/jsp/linkman/list.jsp</result>
+				<result name="initAddUI">/jsp/linkman/add.jsp</result>
+				<result name="initUpdate">/jsp/linkman/edit.jsp</result>
+				
+				<result name="saveOK">/jsp/linkman/add.jsp</result>
+				<result name="deleteOK">/jsp/success.jsp</result>
+				<result name="updateOK" type="redirectAction">
+		            <param name="namespace">/</param>
+	                <param name="actionName">linkman_findByPage</param>
+	                <param name="pageCode">${pageCode }</param>
+	                <param name="pageSize">${pageSize }</param>
+				</result>
+				
+				<result name="saveFailure">/jsp/error.jsp</result>
+				<result name="updateFailure">/jsp/error.jsp</result>
+			</action>
+			
+			
 		</package>
-	
+		<!-- <package name="jspForbid" extends="struts-default" namespace="/">
+			<action name="*.jsp" class="com.hi.action.Sys_UserAction" method="login">
+				<result name="index">index.jsp</result>
+				<result name="login">login.jsp</result>
+			</action>
+		
+		</package>
+	 -->
 	</struts>	
