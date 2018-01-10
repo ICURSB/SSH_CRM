@@ -3,10 +3,35 @@
 	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 	<struts>
+	
+		<!-- 设置文件上传的大小2M -->
+		<constant name="struts.multipart.maxSize" value="2097152"/>
+	
 		<package name="struts" extends="struts-default" namespace="/">
-			<!-- 验证码 -->
+			<!-- 配置自定义拦截器 -->
+			<interceptors>
+					<interceptor name="userInterceptor" class="com.hi.interceptor.UserInterceptor">
+						<!-- 设置不拦截的方法 -->
+						<param name="excludeMethods">login,register,checkCode</param>
+					</interceptor>
+				<interceptor-stack name="interceptorStack" >
+					<interceptor-ref name="userInterceptor" />
+					<interceptor-ref name="defaultStack" />
+				</interceptor-stack>
+			</interceptors>
+			
+			
+			<!-- 全局视图结果页面配置 -->
+			<global-results>
+				<result name="login" type="redirect" >/login.jsp</result>
+			</global-results>
+		
+			<!-- 验证码，不配置拦截器 -->
 			<action name="vCode" class="com.hi.action.VCode"/>
+			
 			<action name="user_*" class="com.hi.action.Sys_UserAction" method="{1}">
+				<interceptor-ref name="interceptorStack"/>
+				
 				<result name="index">index.jsp</result>
 				<result name="login">login.jsp</result>
 				<result name="register">register.jsp</result>
@@ -19,24 +44,36 @@
 				<result name="pswSuccess">/jsp/success.jsp</result>
 			</action>
 			<action name="customer_*" class="com.hi.action.CustomerAction" method="{1}">
+				<interceptor-ref name="interceptorStack"/>
 				
 				<result name="customerList">/jsp/customer/list.jsp</result>
 				<result name="initAddUI">/jsp/customer/add.jsp</result>
 				<result name="initUpdate">/jsp/customer/edit.jsp</result>
 				<result name="deleteOK">/jsp/success.jsp</result>
+				
+				<result name="findByLevel">/jsp/totals/level.jsp</result>
+				<result name="findBySource">/jsp/totals/sources.jsp</result>
+				
 			</action>
 			<action name="dict_*" class="com.hi.action.Base_DictAction" method="{1}">
+				<interceptor-ref name="interceptorStack"/>
 				
 				<result name="customerList">/jsp/customer/list.jsp</result>
 			</action>
 			<action name="linkman_*" class="com.hi.action.LinkManAction" method="{1}">
+				<interceptor-ref name="interceptorStack"/>
 				
 				<result name="linkmanList">/jsp/linkman/list.jsp</result>
 				<result name="initAddUI">/jsp/linkman/add.jsp</result>
 				<result name="initUpdate">/jsp/linkman/edit.jsp</result>
 				
 				<result name="saveOK">/jsp/linkman/add.jsp</result>
-				<result name="deleteOK">/jsp/success.jsp</result>
+				<result name="deleteOK" type="redirectAction">
+		            <param name="namespace">/</param>
+	                <param name="actionName">linkman_findByPage</param>
+	                <param name="pageCode">${pageCode }</param>
+	                <param name="pageSize">${pageSize }</param>
+				</result>
 				<result name="updateOK" type="redirectAction">
 		            <param name="namespace">/</param>
 	                <param name="actionName">linkman_findByPage</param>
@@ -48,6 +85,17 @@
 				<result name="updateFailure">/jsp/error.jsp</result>
 			</action>
 			
+			
+			<action name="visit_*" class="com.hi.action.VisitAction" method="{1}">
+				<interceptor-ref name="interceptorStack"/>
+			
+				<result name="initAddUI">/jsp/visit/add.jsp</result>
+				<result name="visitList">/jsp/visit/list.jsp</result>
+				<result name="saveOK">/jsp/visit/add.jsp</result>
+				
+				<result name="saveFailure">/jsp/visit/add.jsp</result>
+			
+			</action>
 			
 		</package>
 		<!-- <package name="jspForbid" extends="struts-default" namespace="/">

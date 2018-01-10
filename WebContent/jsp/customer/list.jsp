@@ -24,7 +24,7 @@
 	 $(function(){
 		//利用ajax发请求 客户级别
 		var url = "${pageContext.request.contextPath}/dict_findByCode.action";
-		var param = {"dict_type_code":"002"};
+		var param = {"dict_type_code":"006"};
 		$.post(url,param,function(data){
 			//i 索引 n对象
 			$(data).each(function(i,n){
@@ -40,7 +40,7 @@
 			});
 		},"json");
 		//客户来源
-		var param = {"dict_type_code":"006"};
+		var param = {"dict_type_code":"002"};
 		$.post(url,param,function(data){
 			//i 索引 n对象
 			$(data).each(function(i,n){
@@ -62,7 +62,7 @@
 </HEAD>
 <BODY>
 
-<%@ include file="/backToLogin.jsp" %><!-- 登录用户不存在时自动跳转回登录界面 -->
+
 	<FORM id="customerForm" name="customerForm"
 		action="${pageContext.request.contextPath }/customer_findByPage.action"
 		method=post>

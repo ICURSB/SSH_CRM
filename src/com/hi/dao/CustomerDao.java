@@ -11,5 +11,7 @@ import com.hi.util.BaseDao;
  */
 public interface CustomerDao extends BaseDao<Customer>{
 
-	
+	List<Object[]> findByLevel();
+
+	List<Object[]> findBySource();
 }

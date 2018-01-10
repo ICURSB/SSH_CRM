@@ -123,6 +123,9 @@
 								<INPUT class=button id=sButton2 type=submit
 														value="保存 " name=sButton2>
 								</td>
+								<td>
+								<span style="color:red; ">${msg }</span>
+								</td>
 							</tr>
 						</TABLE>
 						

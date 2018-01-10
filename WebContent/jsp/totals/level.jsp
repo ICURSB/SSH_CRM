@@ -13,7 +13,8 @@
 	
 <SCRIPT language=javascript>
 	function to_page(page) {
-		if (page) {
+		//参数不为null且输入框不存在值时给输入框赋值，否则以输入框内的值为准
+		if (page && $("#page").val()==""){
 			$("#page").val(page);
 		}
 		document.customerForm.submit();

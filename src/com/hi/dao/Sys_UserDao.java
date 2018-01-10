@@ -1,8 +1,9 @@
 package com.hi.dao;
 
 import com.hi.bean.Sys_User;
+import com.hi.util.BaseDao;
 
-public interface Sys_UserDao {
+public interface Sys_UserDao extends BaseDao<Sys_User> {
 	/**
 	 * 用用户名和密码查找单个用户
 	 * @param sys_user

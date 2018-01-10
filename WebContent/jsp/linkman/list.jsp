@@ -24,7 +24,11 @@
 		var url = "${pageContext.request.contextPath}/customer_findAll.action";
 		$.post(url,function(data){
 			$(data).each(function(){
-			$("#customerId").append("<option value='"+this.cust_id+"'>"+this.cust_name+"</option>");
+				if(this.cust_id == "${model.customer.cust_id }"){
+					$("#customerId").append("<option value='"+this.cust_id+"' selected>"+this.cust_name+"</option>");
+				}else{
+					$("#customerId").append("<option value='"+this.cust_id+"'>"+this.cust_name+"</option>");
+				}
 			});
 		},"json");
 	});
@@ -118,7 +122,7 @@
 													<TD>
 													<a href="${pageContext.request.contextPath }/linkman_initUpdate?lkm_id=${linkman.lkm_id}&pageCode=${page.pageCode }&pageSize=${page.pageSize }">修改</a>
 													&nbsp;&nbsp;
-													<a href="${pageContext.request.contextPath }/linkman_delete?lkm_id=${linkman.lkm_id}" onclick="return window.confirm('确认删除吗?')">删除</a>
+													<a href="${pageContext.request.contextPath }/linkman_delete?lkm_id=${linkman.lkm_id}&pageCode=${page.pageCode }&pageSize=${page.pageSize }" onclick="return window.confirm('确认删除吗?')">删除</a>
 													</TD>
 												</TR>
 								

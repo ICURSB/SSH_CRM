@@ -1,6 +1,7 @@
 package com.hi.action;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpSession;
@@ -9,6 +10,8 @@ import org.apache.struts2.ServletActionContext;
 
 import com.hi.bean.Sys_User;
 import com.hi.service.Sys_UserService;
+import com.hi.util.Utils;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 /**
@@ -213,5 +216,14 @@ public class Sys_UserAction extends ActionSupport implements ModelDriven<Sys_Use
 		return "login";
 	}
 	
+	public String findAll() throws IOException{
+		List<Sys_User> list = sys_UserService.findAll();
+
+		String string = Utils.toJsonString(list);
+		
+		Utils.write(ServletActionContext.getResponse(), string);
+		
+		return null;
+	}
 	
 }

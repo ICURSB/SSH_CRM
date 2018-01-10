@@ -6,9 +6,10 @@ import java.util.List;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 
 import com.hi.bean.Sys_User;
+import com.hi.util.BaseDaoImpl;
 
 @SuppressWarnings("unchecked")
-public class Sys_UserDaoImpl extends HibernateDaoSupport implements Sys_UserDao{
+public class Sys_UserDaoImpl extends BaseDaoImpl<Sys_User> implements Sys_UserDao{
 
 	@Override
 	public Sys_User select(Sys_User sys_user) {

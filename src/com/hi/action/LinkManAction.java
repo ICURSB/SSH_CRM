@@ -70,8 +70,9 @@ public class LinkManAction extends ActionSupport implements ModelDriven<LinkMan>
 			criteria.add(Restrictions.like("lkm_name", "%"+linkMan.getLkm_name()+"%"));
 		}
 		System.out.println(linkMan.getCustomer());
-		if(linkMan.getCustomer() != null && linkMan.getCustomer().getCust_id() != null){
-			criteria.add(Restrictions.eq("customerId", linkMan.getCustomer().getCust_id()));
+		Long id = null;
+		if(linkMan.getCustomer() != null && (id = linkMan.getCustomer().getCust_id()) != null){
+			criteria.add(Restrictions.eq("customer.cust_id", id));
 		}
 		
 		PageBean<LinkMan> pageBean = linkManService.findByPage(criteria,pageCode,pageSize);
@@ -123,6 +124,20 @@ public class LinkManAction extends ActionSupport implements ModelDriven<LinkMan>
 			return "updateFailure";
 		}
 		
+	}
+	
+	/**
+	 * 根据ID删除联系人
+	 * @return
+	 */
+	public String delete(){
+		if(linkMan.getLkm_id() > 0){
+			linkManService.delete(linkMan);
+		}
+		ValueStack valueStack = ActionContext.getContext().getValueStack();
+		valueStack.set("pageCode", pageCode);
+		valueStack.set("pageSize", pageSize);
+		return "deleteOK";
 	}
 }
 

@@ -1,5 +1,7 @@
 package com.hi.service;
 
+import java.util.List;
+
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hi.bean.Sys_User;
@@ -67,6 +69,12 @@ public class Sys_UserServiceImpl implements Sys_UserService{
 		if(existUser == null || inUser == null) return false;
 		return existUser.getUser_code().equals(inUser.getUser_code()) &&
 				Utils.md5(inUser.getUser_password()).equals(existUser.getUser_password());
+	}
+
+
+	@Override
+	public List<Sys_User> findAll() {
+		return sys_UserDao.selectAll();
 	}
 
 }

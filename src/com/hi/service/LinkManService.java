@@ -14,5 +14,7 @@ public interface LinkManService {
 	boolean save(LinkMan linkMan);
 
 	boolean update(LinkMan linkMan);
+
+	boolean delete(LinkMan linkMan);
 	
 }

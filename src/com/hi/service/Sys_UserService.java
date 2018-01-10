@@ -1,5 +1,7 @@
 package com.hi.service;
 
+import java.util.List;
+
 import com.hi.bean.Sys_User;
 
 public interface Sys_UserService {
@@ -36,5 +38,6 @@ public interface Sys_UserService {
 	 * @return 验证OK返回true，否则返回false
 	 */
 	boolean checkPassword(Sys_User inUser, Sys_User existUser);
+	List<Sys_User> findAll();
 
 }

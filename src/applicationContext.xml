@@ -111,4 +111,15 @@
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
 	
+	
+	<!-- 客户拜访记录模块 -->
+	<bean name="visitAction" class="com.hi.action.VisitAction" scope="prototype">
+		<property name="visitService" ref="visitService"/>
+	</bean>
+	<bean name="visitService" class="com.hi.service.VisitServiceImpl">
+		<property name="visitDao" ref="visitDao"/>
+	</bean>
+	<bean name="visitDao" class="com.hi.dao.VisitDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
 </beans>

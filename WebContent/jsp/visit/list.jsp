@@ -21,7 +21,7 @@
 	src="${pageContext.request.contextPath }/js/jquery-3.1.0.min.js"></script> --%>
 <SCRIPT language=javascript>
 	function to_page(page) {
-		if (page) {
+		if (page  && $("#page").val()=="") {
 			$("#page").val(page);
 		}
 		document.customerForm.submit();
@@ -81,12 +81,12 @@
 												<TR>
 													<TD>被拜访人：</TD>
 													<TD><INPUT class=textbox id="visitNameId"
-														style="WIDTH: 80px" maxLength=50 name="visit_interviewee" value="${model.visit_interviewee }">
+														style="WIDTH: 80px" maxLength=50 name="visit_interviewee" value="${interviewee }"><!-- model.visit_interviewee -->
 													</TD>
 													<TD>选择日期：</TD>
-													<TD><INPUT class=textbox id="beginDate" style="WIDTH: 80px" maxLength=50 name="beginDate">
+													<TD><INPUT class=textbox id="beginDate" style="WIDTH: 80px" maxLength=50 name="beginDate" value="${beginDate }"/>
 													至
-													<TD><INPUT class=textbox id="endDate" style="WIDTH: 80px" maxLength=50 name="endDate">
+													<TD><INPUT class=textbox id="endDate" style="WIDTH: 80px" maxLength=50 name="endDate" value="${endDate }"/>
 													</TD>
 
 													<TD><INPUT class=button id=sButton2 type=submit

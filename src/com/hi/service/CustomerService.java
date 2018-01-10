@@ -27,5 +27,9 @@ public interface CustomerService {
 	boolean delete(Customer customer);
 
 	List<Customer> selectAll();
+
+	List<Object[]> findByLevel();
+
+	List<Object[]> findBySource();
 	
 }

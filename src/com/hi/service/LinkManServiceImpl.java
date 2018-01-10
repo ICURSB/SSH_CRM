@@ -34,5 +34,10 @@ public class LinkManServiceImpl implements LinkManService{
 	public boolean update(LinkMan linkMan) {
 		return linkManDao.update(linkMan);
 	}
+
+	@Override
+	public boolean delete(LinkMan linkMan) {
+		return linkManDao.delete(linkMan);
+	}
 	
 }

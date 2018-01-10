@@ -7,7 +7,9 @@ import java.util.List;
 import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 
+import com.hi.bean.Base_Dict;
 import com.hi.bean.Customer;
 import com.hi.service.CustomerService;
 import com.hi.util.PageBean;
@@ -76,6 +78,33 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		DetachedCriteria criteria = DetachedCriteria.forClass(Customer.class);
 		System.out.println(customerService);
 		System.out.println(criteria+" " + pageCode + " "+ pageSize);
+		System.out.println(customer);
+		
+		String cust_name = customer.getCust_name();
+		if(cust_name != null && !cust_name.equals("")){
+			System.out.println(cust_name);
+			criteria.add(Restrictions.like("cust_name", "%"+cust_name+"%"));
+		}
+		Base_Dict level = customer.getLevel();
+		if (level != null) {
+			String dict_id = level.getDict_id();
+			if (dict_id != null && !dict_id.equals("")) {
+				System.out.println(level);
+				criteria.add(Restrictions.eq("level.dict_id", dict_id));
+			}
+		}
+		Base_Dict source = customer.getSource();
+		if (source != null) {
+			String dict_id = source.getDict_id();
+			if (dict_id != null && !dict_id.equals("")) {
+				System.out.println(source);
+				criteria.add(Restrictions.eq("source.dict_id", dict_id));
+			}
+		}
+		
+/*		if (level !=null && level.getDict_id() != null && !level.getDict_id().equals("")) {
+			criteria.add(Restrictions.eq("level.dict_id", level.getDict_id()));
+		}*/
 		
 		PageBean<Customer> page = customerService.findByPage(criteria,this.pageCode,this.pageSize);
 
@@ -190,4 +219,25 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		return "deleteOK";
 		
 	}
+	/**
+	 * 客户级别统计
+	 * @return
+	 */
+	public String findByLevel(){
+		
+		List<Object[]> list = customerService.findByLevel();
+		ActionContext.getContext().getValueStack().set("list", list);
+		//System.out.println(list);
+		return "findByLevel";
+	}
+	/**
+	 * 客户来源统计
+	 * @return
+	 */
+	public String findBySource(){
+		List<Object[]> list = customerService.findBySource();
+		ActionContext.getContext().getValueStack().set("list", list);
+		return "findBySource";
+	}
+	
 }
